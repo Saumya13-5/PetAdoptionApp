@@ -1,5 +1,5 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-import { TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Header from '../../components/Home/Header'
 import PetListByCategory from '../../components/Home/PetListByCategory'
 import Colours from '../../constants/Colours'
@@ -19,14 +19,15 @@ export default function Home() {
       <PetListByCategory/>  
 
       {/* Add new pet */}
-      <TouchableOpacity style={styles.addNewPetContainer}>
+      <Link href={'/add-new-pet'}
+      style={styles.addNewPetContainer}>
         <MaterialIcons name="pets" size={24} color={Colours.PRIMARY}/>
         <Text style={{
           fontFamily:'outfit-medium',
           color:Colours.PRIMARY,
           fontSize:18,
         }}>Add new Pet</Text>
-      </TouchableOpacity>
+      </Link>
       
     </View>
   )
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         padding:20,
         marginTop:20,
+        textAlign:'center',
         backgroundColor:Colours.LIGHT_PRIMARY,
         borderColor:Colours.PRIMARY,
         borderRadius:15,

@@ -1,5 +1,5 @@
 import { useUser } from '@clerk/clerk-expo';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 export default function Header() {
     const {user}= useUser();

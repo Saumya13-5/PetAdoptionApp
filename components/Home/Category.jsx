@@ -1,6 +1,6 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-web';
 import { db } from './../../config/FirebaseConfig';
 import Colors from './../../constants/Colours';

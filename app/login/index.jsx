@@ -2,7 +2,7 @@
 import { useoAuth } from '@clerk/clerk-expo';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
-import { Image, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import Colors from './../../constants/Colours';
 export const useWarmUpBrowser = () => {
   React.useEffect(() => {
