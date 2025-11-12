@@ -1,22 +1,22 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { FlatList } from 'react-native-web';
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { db } from './../../config/FirebaseConfig';
 import Colors from './../../constants/Colours';
 export default function Category({category}) {
   
-  const [categoryList,setCategoryList]=useState({});
+  const [categoryList,setCategoryList]=useState([]);
   const [selectedCategory,setSelectedCategory]= useState('Dogs');
   useEffect(()=>{
     GetCategories();
   },[])
+
   const GetCategories=async ()=>{
     setCategoryList([])
     const snapshot=await getDocs(collection(db,'Category'));
     snapshot.forEach((doc) => { 
       setCategoryList(categoryList=>[...categoryList,doc.data()])
-    });
+    })
   }
   return (
     <View style={{
