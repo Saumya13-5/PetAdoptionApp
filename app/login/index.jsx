@@ -1,8 +1,42 @@
 // app/login.jsx
+import { useoAuth } from '@clerk/clerk-expo';
+import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
 import { Image, Text, View } from "react-native";
 import Colors from './../../constants/Colours';
+export const useWarmUpBrowser = () => {
+  React.useEffect(() => {
+    // Warm up the android browser to improve UX
+    // https://docs.expo.dev/guides/authentication/#improving-user-experience
+    void WebBrowser.warmUpAsync();
+    return () => {
+      void WebBrowser.coolDownAsync();
+    };
+  }, []);
+};
+
+WebBrowser.maybeCompleteAuthSession()
 
 export default function LoginScreen() {
+  useWarmUpBrowser();
+  const { startoAuthFlow } = useoAuth({strategy: 'oauth_google'})
+
+  const onPress = useCallback(async () => {
+  try {
+    const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow({
+      redirectUrl: Linking.createURL('/home', { scheme: 'myapp' }),
+    });
+
+    if (createdSessionId) {
+      
+    } else {
+      // Use signIn or signUp for next steps such as MFA
+    }
+  } catch (err) {
+    console.error('OAuth error', err);
+  }
+}, []);
+
   return (
     <View
     style= {{
@@ -43,6 +77,7 @@ export default function LoginScreen() {
 
         </Text>
         <Pressable
+        onPress={onPress}
             style={{
                 padding: 14,
                 marginTop: 100,
